@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import fr.univartois.butinfo.r304.bomberman.model.map.CardGenerator;
 import fr.univartois.butinfo.r304.bomberman.model.map.Cell;
 import fr.univartois.butinfo.r304.bomberman.model.map.GameMap;
 import fr.univartois.butinfo.r304.bomberman.view.ISpriteStore;
@@ -167,8 +168,7 @@ public final class BombermanGame {
      * @return La carte du jeu ayant été créée.
      */
     private GameMap createMap() {
-        // TODO Utilisez le générateur de cartes que vous avez écrit pour créer une carte.
-        return null;
+        return new CardGenerator().generateCard(height, width);
     }
 
     /**
