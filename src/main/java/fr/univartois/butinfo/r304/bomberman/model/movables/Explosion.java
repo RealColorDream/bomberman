@@ -24,17 +24,17 @@ public class Explosion extends AbstractMovable {
 
     @Override
     public void collidedWith(IMovable other) {
-        //TODO
+        other.explode();
     }
 
     @Override
     public void explode() {
-        //TODO
+        //do nothing
     }
 
     @Override
     public void hitEnemy() {
-        //TODO
+        //do nothing
     }
 
     @Override
@@ -44,4 +44,5 @@ public class Explosion extends AbstractMovable {
         }
         return false;
     }
+
 }
