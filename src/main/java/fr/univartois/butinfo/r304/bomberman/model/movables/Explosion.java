@@ -36,4 +36,12 @@ public class Explosion extends AbstractMovable {
     public void hitEnemy() {
         //TODO
     }
+
+    @Override
+    public boolean move(long timeDelta){
+        if (timeDelta>=creationTime+EXPLOSION_DELAY){
+            isConsumedProperty().set(true);
+        }
+        return false;
+    }
 }
