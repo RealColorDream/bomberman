@@ -39,7 +39,7 @@ public class Explosion extends AbstractMovable {
 
     @Override
     public boolean move(long timeDelta){
-        if (timeDelta>=creationTime+EXPLOSION_DELAY){
+        if (System.currentTimeMillis()>=creationTime+EXPLOSION_DELAY){
             isConsumedProperty().set(true);
         }
         return false;
