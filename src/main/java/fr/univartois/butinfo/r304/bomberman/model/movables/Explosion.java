@@ -6,6 +6,9 @@ import fr.univartois.butinfo.r304.bomberman.view.Sprite;
 
 public class Explosion extends AbstractMovable {
 
+    static final int EXPLOSION_DELAY = 1000;
+    long creationTime;
+
     /**
      * Crée une nouvelle instance de AbstractMovable.
      *
@@ -16,7 +19,7 @@ public class Explosion extends AbstractMovable {
      */
     protected Explosion(BombermanGame game, double xPosition, double yPosition, Sprite sprite) {
         super(game, xPosition, yPosition, sprite);
-        //TODO ?
+        creationTime = System.currentTimeMillis();
     }
 
     @Override
