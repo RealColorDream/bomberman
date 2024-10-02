@@ -168,7 +168,12 @@ public final class BombermanGame {
      * @return La carte du jeu ayant été créée.
      */
     private GameMap createMap() {
-        return new CardGenerator(spriteStore.getSprite("wall"), spriteStore.getSprite("lawn")).generateCard(height, width);
+        int cellSize = spriteStore.getSpriteSize();
+        int mapHeight = height / cellSize;
+        int mapWidth = width / cellSize;
+        return new CardGenerator(
+                spriteStore.getSprite("wall"), spriteStore.getSprite("lawn")
+        ).generateCard(mapHeight, mapWidth);
     }
 
     /**

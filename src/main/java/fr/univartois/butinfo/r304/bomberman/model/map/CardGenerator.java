@@ -3,8 +3,8 @@ package fr.univartois.butinfo.r304.bomberman.model.map;
 import fr.univartois.butinfo.r304.bomberman.view.Sprite;
 
 public class CardGenerator {
-    private Sprite wallSprite;
-    private Sprite lawnSprite;
+    private final Sprite wallSprite;
+    private final Sprite lawnSprite;
 
     public CardGenerator(Sprite wallSprite, Sprite lawnSprite) {
         this.wallSprite = wallSprite;
