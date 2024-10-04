@@ -49,18 +49,22 @@ public class Enemies extends AbstractMovable {
         }
         return super.move(mouvement);
     }
+
     @Override
     public void collidedWith(IMovable other) {
-        //TODO
+            //TODO
     }
+
     @Override
     public void explode() {
-        //TODO
+        isAlive = false;
+        isConsumedProperty().set(true);
     }
 
     @Override
     public void hitEnemy() {
-        //TODO
+        explode();
     }
 }
+
 
