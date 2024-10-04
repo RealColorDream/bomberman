@@ -22,6 +22,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import fr.univartois.butinfo.r304.bomberman.model.map.Cell;
 import fr.univartois.butinfo.r304.bomberman.model.map.GameMap;
+import fr.univartois.butinfo.r304.bomberman.model.movables.Enemies;
 import fr.univartois.butinfo.r304.bomberman.view.ISpriteStore;
 import fr.univartois.butinfo.r304.bomberman.view.Sprite;
 import javafx.animation.AnimationTimer;
@@ -197,13 +198,21 @@ public final class BombermanGame {
             // TODO Créez une bombe et ajoutez-la au joueur.
         }
 
-        // On crée ensuite les ennemis sur la carte.
         for (int i = 0; i < nbEnemies; i++) {
-            // TODO Créez un ennemi en utilisant votre implémentation.
-            IMovable enemy = null;
-            enemy.setHorizontalSpeed(DEFAULT_SPEED);
-            movableObjects.add(enemy);
-            spawnMovable(enemy);
+            // Créez un ennemi en utilisant votre implémentation.
+            Sprite enemySprite = spriteStore.getEnemySprite(); // Replace with actual method to get enemy sprite
+            List<Cell> spawnableCells = gameMap.getEmptyCells(); // Get empty cells for spawning
+            if (!spawnableCells.isEmpty()) {
+                Cell cell = spawnableCells.get(RANDOM.nextInt(spawnableCells.size())); // Randomly select a spawnable cell
+                double enemyX = cell.getColumn() * spriteStore.getSpriteSize(); // Calculate x position
+                double enemyY = cell.getRow() * spriteStore.getSpriteSize(); // Calculate y position
+
+                // Create a new enemy instance
+                Enemies enemy = new Enemies(this, enemyX, enemyY, enemySprite);
+                enemy.setHorizontalSpeed(DEFAULT_SPEED); // Set the initial horizontal speed if needed
+                movableObjects.add(enemy);
+                spawnMovable(enemy);
+            }
         }
     }
 

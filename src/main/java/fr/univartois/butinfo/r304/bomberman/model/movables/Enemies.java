@@ -18,7 +18,7 @@ public class Enemies extends AbstractMovable {
     private static final Random random = new Random();
     private boolean isAlive;
 
-    protected Enemies(BombermanGame game, double xPosition, double yPosition, Sprite sprite) {
+    public Enemies(BombermanGame game, double xPosition, double yPosition, Sprite sprite) {
         super(game, xPosition, yPosition, sprite);
     }
 

@@ -28,7 +28,6 @@ import java.util.NoSuchElementException;
  *
  * @version 0.1.0
  */
-@FunctionalInterface
 public interface ISpriteStore {
 
     /**
@@ -52,4 +51,5 @@ public interface ISpriteStore {
         return 30;
     }
 
+    Sprite getEnemySprite();
 }
