@@ -53,6 +53,7 @@ public class Player extends AbstractMovable implements IMovable {
             explode();
         }
     }
+
     @Override
     public void collidedWith(IMovable other) {
         //TODO
@@ -60,11 +61,11 @@ public class Player extends AbstractMovable implements IMovable {
 
     @Override
     public void explode() {
-        //TODO
+        decreaseLives();
     }
 
     @Override
     public void hitEnemy() {
-        //TODO
+        decreaseLives();
     }
 }
