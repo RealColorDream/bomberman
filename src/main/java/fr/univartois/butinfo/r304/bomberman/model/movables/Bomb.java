@@ -6,6 +6,7 @@ import fr.univartois.butinfo.r304.bomberman.view.Sprite;
 
 public class Bomb extends AbstractMovable {
 
+    long dropTime=-1;
 
     /**
      * Crée une nouvelle instance de AbstractMovable.
@@ -17,6 +18,14 @@ public class Bomb extends AbstractMovable {
      */
     protected Bomb(BombermanGame game, double xPosition, double yPosition, Sprite sprite) {
         super(game, xPosition, yPosition, sprite);
+    }
+
+    public void drop(double x, double y) {
+        xPosition.set(x);
+        yPosition.set(y);
+        dropTime = System.currentTimeMillis();
+
+
     }
 
     @Override
