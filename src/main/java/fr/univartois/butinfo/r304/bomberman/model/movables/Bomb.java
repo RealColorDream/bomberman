@@ -2,11 +2,14 @@ package fr.univartois.butinfo.r304.bomberman.model.movables;
 
 import fr.univartois.butinfo.r304.bomberman.model.BombermanGame;
 import fr.univartois.butinfo.r304.bomberman.model.IMovable;
+import fr.univartois.butinfo.r304.bomberman.model.map.Cell;
 import fr.univartois.butinfo.r304.bomberman.view.Sprite;
+import javafx.scene.image.Image;
 
 public class Bomb extends AbstractMovable {
 
     long dropTime=-1;
+    final static long explodeDelay=5000;
 
     /**
      * Crée une nouvelle instance de AbstractMovable.
@@ -40,6 +43,19 @@ public class Bomb extends AbstractMovable {
 
     @Override
     public void hitEnemy() {
+
+    }
+    @Override
+    public void move(){
+        if (dropTime != -1 && System.currentTimeMillis() >= dropTime+explodeDelay) {
+            game.addMovable(new Explosion(game, xPosition.get(), yPosition.get(), new Sprite(new Image("explosion"))));
+            for(int x=-1; x<=1; x+=2){
+                game.addMovable(new Explosion(game, xPosition.get()+x, yPosition.get(), game.getSpriteStore().getSprite("explosion")));
+                game.addMovable(new Explosion(game, xPosition.get(), yPosition.get()+x, game.getSpriteStore().getSprite("explosion"))));
+                game.getCellAt((int) (xPosition.get()+x), (int) yPosition.get()).replaceBy(new Cell(game.getSpriteStore().getSprite("grass")));
+                game.getCellAt((int) xPosition.get(), (int) (yPosition.get()+1)).replaceBy(new Cell(game.getSpriteStore().getSprite("grass"));
+            }
+        }
 
     }
 }
