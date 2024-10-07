@@ -23,6 +23,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import fr.univartois.butinfo.r304.bomberman.model.map.CardGenerator;
 import fr.univartois.butinfo.r304.bomberman.model.map.Cell;
 import fr.univartois.butinfo.r304.bomberman.model.map.GameMap;
+import fr.univartois.butinfo.r304.bomberman.model.movables.Bomb;
 import fr.univartois.butinfo.r304.bomberman.view.ISpriteStore;
 import fr.univartois.butinfo.r304.bomberman.view.Sprite;
 import javafx.animation.AnimationTimer;
@@ -293,9 +294,10 @@ public final class BombermanGame {
      *
      * @param bomb La bombe à déposer.
      */
-    public void dropBomb(IMovable bomb) {
-        // TODO Adapteez le type de bomb pour correspondre à votre implémentation.
-        // TODO Déposez ensuite la bombe à la position du joueur.
+    public void dropBomb(Bomb bomb) {
+        bomb.drop(player.getX(), player.getY());
+        addMovable(bomb);
+        Cell bombCell = getCellAt(bomb.getX(), bomb.getY()); // Not sure about this
     }
 
     /**
