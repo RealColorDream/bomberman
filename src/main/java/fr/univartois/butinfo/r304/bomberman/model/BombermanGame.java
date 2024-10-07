@@ -204,8 +204,8 @@ public final class BombermanGame {
             List<Cell> spawnableCells = gameMap.getEmptyCells(); // Get empty cells for spawning
             if (!spawnableCells.isEmpty()) {
                 Cell cell = spawnableCells.get(RANDOM.nextInt(spawnableCells.size())); // Randomly select a spawnable cell
-                double enemyX = cell.getColumn() * spriteStore.getSpriteSize(); // Calculate x position
-                double enemyY = cell.getRow() * spriteStore.getSpriteSize(); // Calculate y position
+                double enemyX = cell.getColumn(); // Calculate x position
+                double enemyY = cell.getRow(); // Calculate y position
 
                 // Create a new enemy instance
                 Enemies enemy = new Enemies(this, enemyX, enemyY, enemySprite);
