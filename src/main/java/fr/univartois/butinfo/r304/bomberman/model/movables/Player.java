@@ -8,6 +8,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.ObservableList;
 
+import java.util.List;
+
 public class Player extends AbstractMovable implements IMovable {
 
     private final IntegerProperty score;
@@ -50,6 +52,13 @@ public class Player extends AbstractMovable implements IMovable {
 
     public int getLives() {
         return lives.get();
+    }
+
+    public List<Bomb> getBombs(){
+        return bombs.stream().toList();
+    }
+    public void addBomb(Bomb b){
+        bombs.add(b);
     }
 
     public void decreaseLives() {
