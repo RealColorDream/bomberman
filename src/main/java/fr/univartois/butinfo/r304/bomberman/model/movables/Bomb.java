@@ -49,12 +49,12 @@ public class Bomb extends AbstractMovable {
     @Override
     public boolean move(long delta){
         if (dropTime != -1 && System.currentTimeMillis() >= dropTime+EXPLODE_DELAY) {
-            game.addMovable(new Explosion(game, xPosition.get(), yPosition.get(), new Sprite(new Image("explosion"))));
+            game.addMovable(new Explosion(game, xPosition.get(), yPosition.get(), game.getSpriteStore().getSprite("explosion")));
             for(int x=-1; x<=1; x+=2){
                 game.addMovable(new Explosion(game, xPosition.get()+x, yPosition.get(), game.getSpriteStore().getSprite("explosion")));
                 game.addMovable(new Explosion(game, xPosition.get(), yPosition.get()+x, game.getSpriteStore().getSprite("explosion")));
-                game.getCellAt((int) (xPosition.get()+x), (int) yPosition.get()).replaceBy(new Cell(game.getSpriteStore().getSprite("grass")));
-                game.getCellAt((int) xPosition.get(), (int) (yPosition.get()+1)).replaceBy(new Cell(game.getSpriteStore().getSprite("grass")));
+                game.getCellAt((int) (xPosition.get()+x), (int) yPosition.get()).replaceBy(new Cell(game.getSpriteStore().getSprite("lawn")));
+                game.getCellAt((int) xPosition.get(), (int) (yPosition.get()+1)).replaceBy(new Cell(game.getSpriteStore().getSprite("lawn")));
                 isConsumedProperty().set(true);
             }
         }
