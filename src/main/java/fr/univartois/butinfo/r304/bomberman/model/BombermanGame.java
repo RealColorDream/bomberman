@@ -199,17 +199,15 @@ public final class BombermanGame {
         }
 
         for (int i = 0; i < nbEnemies; i++) {
-            // Créez un ennemi en utilisant votre implémentation.
-            Sprite enemySprite = spriteStore.getEnemySprite(); // Replace with actual method to get enemy sprite
-            List<Cell> spawnableCells = gameMap.getEmptyCells(); // Get empty cells for spawning
+            Sprite enemySprite = spriteStore.getSprite("agent");
+            List<Cell> spawnableCells = gameMap.getEmptyCells();
             if (!spawnableCells.isEmpty()) {
-                Cell cell = spawnableCells.get(RANDOM.nextInt(spawnableCells.size())); // Randomly select a spawnable cell
-                double enemyX = cell.getColumn(); // Calculate x position
-                double enemyY = cell.getRow(); // Calculate y position
+                Cell cell = spawnableCells.get(RANDOM.nextInt(spawnableCells.size()));
+                double enemyX = cell.getColumn();
+                double enemyY = cell.getRow();
 
-                // Create a new enemy instance
                 Enemies enemy = new Enemies(this, enemyX, enemyY, enemySprite);
-                enemy.setHorizontalSpeed(DEFAULT_SPEED); // Set the initial horizontal speed if needed
+                enemy.setHorizontalSpeed(DEFAULT_SPEED);
                 movableObjects.add(enemy);
                 spawnMovable(enemy);
             }
