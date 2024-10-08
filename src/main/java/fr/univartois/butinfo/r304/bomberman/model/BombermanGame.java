@@ -24,6 +24,7 @@ import fr.univartois.butinfo.r304.bomberman.model.map.CardGenerator;
 import fr.univartois.butinfo.r304.bomberman.model.map.Cell;
 import fr.univartois.butinfo.r304.bomberman.model.map.GameMap;
 import fr.univartois.butinfo.r304.bomberman.model.movables.Bomb;
+import fr.univartois.butinfo.r304.bomberman.model.movables.Enemies;
 import fr.univartois.butinfo.r304.bomberman.view.ISpriteStore;
 import fr.univartois.butinfo.r304.bomberman.view.Sprite;
 import javafx.animation.AnimationTimer;
@@ -205,11 +206,18 @@ public final class BombermanGame {
 
         // On crée ensuite les ennemis sur la carte.
         for (int i = 0; i < nbEnemies; i++) {
-            // TODO Créez un ennemi en utilisant votre implémentation.
-            IMovable enemy = null;
-            enemy.setHorizontalSpeed(DEFAULT_SPEED);
-            movableObjects.add(enemy);
-            spawnMovable(enemy);
+            Sprite enemySprite = spriteStore.getSprite("agent");
+            List<Cell> spawnableCells = gameMap.getEmptyCells();
+            if (!spawnableCells.isEmpty()) {
+                Cell cell = spawnableCells.get(RANDOM.nextInt(spawnableCells.size()));
+                double enemyX = cell.getColumn();
+                double enemyY = cell.getRow();
+
+                Enemies enemy = new Enemies(this, enemyX, enemyY, enemySprite);
+                enemy.setHorizontalSpeed(DEFAULT_SPEED);
+                movableObjects.add(enemy);
+                spawnMovable(enemy);
+            }
         }
     }
 
@@ -284,6 +292,7 @@ public final class BombermanGame {
      * cette bombe.
      */
     public void dropBomb() {
+        
         // TODO Retirer une bombe au joueur (s'il lui en reste).
         // TODO Utilisez ensuite la méthode dropBomb(Bomb) pour la déposer.
     }
