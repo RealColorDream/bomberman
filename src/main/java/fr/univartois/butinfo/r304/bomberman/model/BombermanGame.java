@@ -208,6 +208,7 @@ public final class BombermanGame {
             // TODO Créez une bombe et ajoutez-la au joueur.
         }
 
+        // On crée ensuite les ennemis sur la carte.
         for (int i = 0; i < nbEnemies; i++) {
             Sprite enemySprite = spriteStore.getSprite("agent");
             List<Cell> spawnableCells = gameMap.getEmptyCells();
@@ -295,8 +296,11 @@ public final class BombermanGame {
      * cette bombe.
      */
     public void dropBomb() {
-        // TODO Retirer une bombe au joueur (s'il lui en reste).
-        // TODO Utilisez ensuite la méthode dropBomb(Bomb) pour la déposer.
+        if (!player.getBombsProperty().isEmpty()) {
+            Bomb bomb = player.getBombsProperty().remove(0);
+            player.bombsLengthProperty().set(player.bombsLengthProperty().get() - 1);
+            dropBomb(bomb);
+        }
     }
 
     /**
@@ -305,9 +309,10 @@ public final class BombermanGame {
      *
      * @param bomb La bombe à déposer.
      */
-    public void dropBomb(IMovable bomb) {
-        // TODO Adapteez le type de bomb pour correspondre à votre implémentation.
-        // TODO Déposez ensuite la bombe à la position du joueur.
+    public void dropBomb(Bomb bomb) {
+        bomb.drop(player.getX(), player.getY());
+        addMovable(bomb);
+        Cell bombCell = getCellAt(bomb.getX(), bomb.getY()); // Not sure about this
     }
 
     /**
