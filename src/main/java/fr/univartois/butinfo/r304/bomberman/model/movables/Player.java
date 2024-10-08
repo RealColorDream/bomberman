@@ -14,8 +14,9 @@ public class Player extends AbstractMovable implements IMovable {
 
     private final IntegerProperty score;
     private final IntegerProperty lives;
+    private final IntegerProperty bombNumbers;
 
-    private ObservableList<Bomb> bombs;
+    private final ObservableList<Bomb> bombs;
 
     /**
      * Crée une nouvelle instance de Player.
@@ -32,6 +33,7 @@ public class Player extends AbstractMovable implements IMovable {
         this.score = new SimpleIntegerProperty(score);
         this.lives = new SimpleIntegerProperty(lives);
         this.bombs = new SimpleListProperty<>();
+        this.bombNumbers = new SimpleIntegerProperty(0);
     }
 
     public IntegerProperty getScoreProperty() {
@@ -57,8 +59,13 @@ public class Player extends AbstractMovable implements IMovable {
     public ObservableList<Bomb> getBombsProperty(){
         return bombs;
     }
+
+    public IntegerProperty bombsLengthProperty(){
+            return bombNumbers;
+    }
     public void addBomb(){
         bombs.add(new Bomb(game, xPosition.get(), yPosition.get(), game.getSpriteStore().getSprite("bomb")));
+        bombNumbers.add(1);
     }
 
     public void decreaseLives() {
