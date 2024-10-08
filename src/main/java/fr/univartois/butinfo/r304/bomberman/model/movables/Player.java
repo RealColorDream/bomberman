@@ -5,11 +5,15 @@ import fr.univartois.butinfo.r304.bomberman.model.IMovable;
 import fr.univartois.butinfo.r304.bomberman.view.Sprite;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.ObservableList;
 
 public class Player extends AbstractMovable implements IMovable {
 
     private final IntegerProperty score;
     private final IntegerProperty lives;
+
+    private ObservableList<Bomb> bombs;
 
     /**
      * Crée une nouvelle instance de Player.
@@ -25,6 +29,7 @@ public class Player extends AbstractMovable implements IMovable {
         super(game, xPosition, yPosition, sprite);
         this.score = new SimpleIntegerProperty(score);
         this.lives = new SimpleIntegerProperty(lives);
+        this.bombs = new SimpleListProperty<>();
     }
 
     public IntegerProperty getScoreProperty() {
