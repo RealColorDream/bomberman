@@ -270,15 +270,15 @@ class Sprite {
 
 ### TP n°3
 
-| Fonctionnalité                             | Terminée ? | Auteur(s)                                     |
-| ------------------------------------------ | ---------- | --------------------------------------------- |
-| Représentation des ennemis                 |            |                                               |
-| Intégration des ennemis dans la partie     |            |                                               |
-| Représentation du joueur                   |            |                                               |
-| Intégration du joueur dans la partie       |            |                                               |
-| Représentation des bombes et explosion     |            |                                               |
-| Intégration des bombes dans la partie      |            |                                               |
-| Création de la carte du jeu                |            |                                               |
+| Fonctionnalité                             | Terminée ? | Auteur(s)                            |
+| ------------------------------------------ |------------|--------------------------------------|
+| Représentation des ennemis                 | Oui        | Mailly Loann                         |
+| Intégration des ennemis dans la partie     | (WIP)      | Mailly Loann                         |
+| Représentation du joueur                   | Oui        | Tout le monde                        |
+| Intégration du joueur dans la partie       | Oui        | Jakubiak Antoinne & Gomez Gonzalez Enzo |
+| Représentation des bombes et explosion     | (WIP)      | Jakubiak Antoinne                    |
+| Intégration des bombes dans la partie      | (WIP)      | Jakubiak Antoinne & Gomez Gonzalez Enzo |
+| Création de la carte du jeu                | Oui        | Gomez Gonzalez Enzo                  |
 
 ### TP n°4
 
