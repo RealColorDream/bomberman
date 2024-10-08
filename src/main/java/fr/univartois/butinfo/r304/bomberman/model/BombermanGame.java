@@ -296,9 +296,11 @@ public final class BombermanGame {
      * cette bombe.
      */
     public void dropBomb() {
-        
-        // TODO Retirer une bombe au joueur (s'il lui en reste).
-        // TODO Utilisez ensuite la méthode dropBomb(Bomb) pour la déposer.
+        player.getBombsProperty().removeFirst();
+        if (!player.getBombsProperty().isEmpty()) {
+            Bomb bomb = player.getBombsProperty().remove(0);
+            dropBomb(bomb);
+        }
     }
 
     /**
