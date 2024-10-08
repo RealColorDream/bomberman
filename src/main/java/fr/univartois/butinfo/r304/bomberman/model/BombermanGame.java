@@ -296,9 +296,9 @@ public final class BombermanGame {
      * cette bombe.
      */
     public void dropBomb() {
-        player.getBombsProperty().removeFirst();
         if (!player.getBombsProperty().isEmpty()) {
             Bomb bomb = player.getBombsProperty().remove(0);
+            player.bombsLengthProperty().set(player.bombsLengthProperty().get() - 1);
             dropBomb(bomb);
         }
     }
