@@ -6,8 +6,10 @@ import fr.univartois.butinfo.r304.bomberman.view.Sprite;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player extends AbstractMovable implements IMovable {
@@ -32,7 +34,7 @@ public class Player extends AbstractMovable implements IMovable {
         super(game, xPosition, yPosition, sprite);
         this.score = new SimpleIntegerProperty(score);
         this.lives = new SimpleIntegerProperty(lives);
-        this.bombs = new SimpleListProperty<>();
+        this.bombs = FXCollections.observableArrayList(new ArrayList<>());
         this.bombNumbers = new SimpleIntegerProperty(0);
     }
 
