@@ -57,7 +57,7 @@ public class Player extends AbstractMovable implements IMovable {
     public List<Bomb> getBombs(){
         return bombs.stream().toList();
     }
-    public void addBomb(Bomb b){
+    public void addBomb(){
         bombs.add(new Bomb(game, xPosition.get(), yPosition.get(), game.getSpriteStore().getSprite("bomb")));
     }
 
