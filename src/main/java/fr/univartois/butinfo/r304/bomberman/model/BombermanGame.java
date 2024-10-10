@@ -379,7 +379,7 @@ public final class BombermanGame {
      * @param enemy L'ennemi qui a été tué.
      */
     public void enemyIsDead(IMovable enemy) {
-        // TODO Mettez à jour le score du joueur.
+        player.increaseScore(100);
         remainingEnemies--;
         removeMovable(enemy);
 
