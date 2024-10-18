@@ -21,6 +21,8 @@ public class Player extends AbstractMovable implements IMovable {
     private final ObservableList<Bomb> bombs;
     private final int spawnX;
     private final int spawnY;
+    private long invulnerabilityStartedAt=0;
+
     /**
      * Crée une nouvelle instance de Player.
      *
@@ -80,8 +82,13 @@ public class Player extends AbstractMovable implements IMovable {
         }
     }
     public void die(){
-        decreaseLives();
-        goToSpawn();
+        long invulnerabilityTime = 3000;
+        if (invulnerabilityStartedAt+ invulnerabilityTime <=System.currentTimeMillis()) {
+            decreaseLives();
+            goToSpawn();
+            invulnerabilityStartedAt = System.currentTimeMillis();
+        }
+
     }
 
 
