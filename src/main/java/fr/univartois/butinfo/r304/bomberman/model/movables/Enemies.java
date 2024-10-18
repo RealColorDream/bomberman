@@ -26,33 +26,13 @@ public class Enemies extends AbstractMovable {
         if (!isAlive) {
             return false;
         }
-        int direction = random.nextInt(4);
-        switch (direction) {
-            case 0: // Haut
-                setVerticalSpeed(-1);
-                setHorizontalSpeed(0);
-                break;
-            case 1: // Bas
-                setVerticalSpeed(1);
-                setHorizontalSpeed(0);
-                break;
-            case 2: // Gauche
-                setVerticalSpeed(0);
-                setHorizontalSpeed(-1);
-                break;
-            case 3: // Droite
-                setVerticalSpeed(0);
-                setHorizontalSpeed(1);
-                break;
-            default:
-                break;
-        }
-        return super.move(mouvement);
+        int direction = random.nextInt(0, 4);
+        return super.move(direction);
     }
 
     @Override
     public void collidedWith(IMovable other) {
-            //TODO
+            other.explode();
     }
 
     @Override

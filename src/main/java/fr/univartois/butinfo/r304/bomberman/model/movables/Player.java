@@ -19,7 +19,8 @@ public class Player extends AbstractMovable implements IMovable {
     private final IntegerProperty bombNumbers;
 
     private final ObservableList<Bomb> bombs;
-
+    private final int spawnX;
+    private final int spawnY;
     /**
      * Crée une nouvelle instance de Player.
      *
@@ -32,6 +33,8 @@ public class Player extends AbstractMovable implements IMovable {
      */
     public Player(BombermanGame game, double xPosition, double yPosition, Sprite sprite, int score, int lives) {
         super(game, xPosition, yPosition, sprite);
+        spawnX = (int) xPosition;
+        spawnY = (int) yPosition;
         this.score = new SimpleIntegerProperty(score);
         this.lives = new SimpleIntegerProperty(lives);
         this.bombs = FXCollections.observableArrayList(new ArrayList<>());
@@ -67,28 +70,38 @@ public class Player extends AbstractMovable implements IMovable {
     }
     public void addBomb(){
         bombs.add(new Bomb(game, xPosition.get(), yPosition.get(), game.getSpriteStore().getSprite("bomb")));
-        bombNumbers.add(1);
+        bombsLengthProperty().setValue(bombs.size());
     }
 
     public void decreaseLives() {
         lives.set(lives.get() - 1);
         if (lives.get() <= 0) {
-            explode();
+            game.playerIsDead();
         }
     }
+    public void die(){
+        decreaseLives();
+        goToSpawn();
+    }
+
 
     @Override
     public void collidedWith(IMovable other) {
-        //TODO
+        //die();
     }
 
     @Override
     public void explode() {
-        decreaseLives();
+        die();
+    }
+
+    public void goToSpawn(){
+        setY(spawnY);
+        setX(spawnX);
     }
 
     @Override
     public void hitEnemy() {
-        decreaseLives();
+        die();
     }
 }
