@@ -174,8 +174,9 @@ public final class BombermanGame {
         int cellSize = spriteStore.getSpriteSize();
         int mapHeight = height / cellSize;
         int mapWidth = width / cellSize;
+
         return new CardGenerator(
-                spriteStore.getSprite("wall"), spriteStore.getSprite("lawn")
+                spriteStore
         ).generateCard(mapHeight, mapWidth);
     }
 
