@@ -1,27 +1,20 @@
 package fr.univartois.butinfo.r304.bomberman.model.map;
 
+import fr.univartois.butinfo.r304.bomberman.view.ISpriteStore;
 import fr.univartois.butinfo.r304.bomberman.view.Sprite;
 
 public class CardGenerator {
-    private final Sprite wallSprite;
-    private final Sprite lawnSprite;
+    private final ISpriteStore spriteStore;
 
-    public CardGenerator(Sprite wallSprite, Sprite lawnSprite) {
-        this.wallSprite = wallSprite;
-        this.lawnSprite = lawnSprite;
+    public CardGenerator(ISpriteStore spriteStore) {
+        this.spriteStore = spriteStore;
     }
 
     public GameMap generateCard(int height, int width) {
+        MapBuilder mapBuilder = new MapBuilder(spriteStore);
         GameMap map = new GameMap(height, width);
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                if (i == 0 || i == height - 1 || j == 0 || j == width - 1) {
-                    map.setAt(i, j, new Cell(new Wall(wallSprite)));
-                } else {
-                    map.setAt(i, j, new Cell(lawnSprite));
-                }
-            }
-        }
-        return map;
+        mapBuilder.setBorder(map);
+        mapBuilder.setGrid(map);
+        return mapBuilder.buildMap(map);
     }
 }
