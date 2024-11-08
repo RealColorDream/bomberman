@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import fr.univartois.butinfo.r304.bomberman.Bomberman;
 import fr.univartois.butinfo.r304.bomberman.model.map.*;
 import fr.univartois.butinfo.r304.bomberman.model.map.Map_2;
 import fr.univartois.butinfo.r304.bomberman.model.movables.Bomb;
@@ -46,7 +47,7 @@ public final class BombermanGame {
     /**
      * La vitesse de déplacement du joueur (en pixels/s).
      */
-    public static final int DEFAULT_SPEED = 75;
+    public static final int DEFAULT_SPEED = 75* Bomberman.SCALE;
 
     /**
      * Le nombre de bombes initialement disponibles pour le joueur.
