@@ -1,8 +1,10 @@
 package fr.univartois.butinfo.r304.bomberman.model.movables;
 
+import fr.univartois.butinfo.r304.bomberman.Bomberman;
 import fr.univartois.butinfo.r304.bomberman.model.BombermanGame;
 import fr.univartois.butinfo.r304.bomberman.model.IMovable;
 import fr.univartois.butinfo.r304.bomberman.model.map.Cell;
+import fr.univartois.butinfo.r304.bomberman.model.map.wall.states.Brick;
 import fr.univartois.butinfo.r304.bomberman.view.Sprite;
 
 public class Bomb extends AbstractMovable {
@@ -37,12 +39,22 @@ public class Bomb extends AbstractMovable {
     }
 
     public void drop(double x, double y) {
-        xPosition.set(x);
-        yPosition.set(y);
+        // Calculate the tile size
+        int tileSize = 32 * Bomberman.SCALE;
+
+        // Round x and y to the nearest tile position
+        double roundedX = Math.round(x / tileSize) * tileSize;
+        double roundedY = Math.round(y / tileSize) * tileSize;
+
+        System.out.println("Rounded X: " + roundedX);
+        System.out.println("Rounded Y: " + roundedY);
+
+        // Set the bomb's position
+        xPosition.set(roundedX);
+        yPosition.set(roundedY);
         dropTime = System.currentTimeMillis();
-
-
     }
+
 
     @Override
     public void collidedWith(IMovable other) {
