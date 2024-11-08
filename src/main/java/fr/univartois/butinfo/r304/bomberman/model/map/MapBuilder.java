@@ -1,5 +1,7 @@
 package fr.univartois.butinfo.r304.bomberman.model.map;
 
+import fr.univartois.butinfo.r304.bomberman.model.map.wall.states.Brick;
+import fr.univartois.butinfo.r304.bomberman.model.map.wall.states.UnbreakableWall;
 import fr.univartois.butinfo.r304.bomberman.view.ISpriteStore;
 
 public class MapBuilder implements IMapBuilder{
@@ -21,12 +23,12 @@ public class MapBuilder implements IMapBuilder{
 
     @Override
     public void setWall(GameMap map, int i, int j) {
-        map.setAt(i, j, new Cell(new Wall(spriteStore.getSprite("wall"))));
+        map.setAt(i, j, new Cell(new Wall(new UnbreakableWall(spriteStore))));
     }
 
     @Override
     public void setBrick(GameMap map, int i, int j) {
-        map.setAt(i, j, new Cell(new Wall(spriteStore.getSprite("bricks"))));
+        map.setAt(i, j, new Cell(new Wall(new Brick(spriteStore))));
     }
 
     @Override
