@@ -1,7 +1,9 @@
-package fr.univartois.butinfo.r304.bomberman.model.movables;
+package fr.univartois.butinfo.r304.bomberman.model.movables.enemies;
 
 import fr.univartois.butinfo.r304.bomberman.model.BombermanGame;
 import fr.univartois.butinfo.r304.bomberman.model.IMovable;
+import fr.univartois.butinfo.r304.bomberman.model.MovementsStrategy;
+import fr.univartois.butinfo.r304.bomberman.model.movables.AbstractMovable;
 import fr.univartois.butinfo.r304.bomberman.view.Sprite;
 
 import java.util.Random;
@@ -16,34 +18,36 @@ public class Enemies extends AbstractMovable {
      * @param sprite    L'instance de {@link Sprite} représentant l'objet.
      */
     private static final Random random = new Random();
-    private boolean isAlive;
+    private MovementStrategy movementStrategy;
 
-    public Enemies(BombermanGame game, double xPosition, double yPosition, Sprite sprite) {
+    public Enemies(BombermanGame game, double xPosition, double yPosition, Sprite sprite, MovementsStrategy movementStrategy) {
         super(game, xPosition, yPosition, sprite);
+        long lastMove = 0;
+        this.movementStrategy = movementStrategy;
     }
 
-    public boolean move(int mouvement) {
-        if (!isAlive) {
-            return false;
-        }
-        int direction = random.nextInt(0, 4);
-        return super.move(direction);
+    @Override
+    public boolean move(long timeDelta) {
+        return movementStrategy.move(this, timeDelta);
+    }
+
+    public boolean moveUsingSpeed(long timeDelta) {
+        return super.move(timeDelta); // Appelle la méthode move de AbstractMovable
     }
 
     @Override
     public void collidedWith(IMovable other) {
-            other.hitEnemy();
+            other.explode();
     }
 
     @Override
     public void explode() {
-        isAlive = false;
         isConsumedProperty().set(true);
     }
 
     @Override
     public void hitEnemy() {
-        //do nothing
+        explode();
     }
 }
 
