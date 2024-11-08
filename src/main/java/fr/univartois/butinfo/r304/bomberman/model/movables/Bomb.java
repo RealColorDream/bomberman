@@ -46,9 +46,6 @@ public class Bomb extends AbstractMovable {
         double roundedX = Math.round(x / tileSize) * tileSize;
         double roundedY = Math.round(y / tileSize) * tileSize;
 
-        System.out.println("Rounded X: " + roundedX);
-        System.out.println("Rounded Y: " + roundedY);
-
         // Set the bomb's position
         xPosition.set(roundedX);
         yPosition.set(roundedY);
