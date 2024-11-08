@@ -77,7 +77,6 @@ public final class BombermanGame {
     /**
      * Le personnage du joueur.
      */
-    // TODO Adaptez le type de cet attribut pour correspondre à votre implémentation.
     private Player player;
 
     /**
@@ -175,7 +174,7 @@ public final class BombermanGame {
         int mapHeight = height / cellSize;
         int mapWidth = width / cellSize;
         return new CardGenerator(
-                spriteStore.getSprite("wall"), spriteStore.getSprite("lawn")
+                spriteStore
         ).generateCard(mapHeight, mapWidth);
     }
 
@@ -224,7 +223,6 @@ public final class BombermanGame {
      * Initialise les statistiques de cette partie.
      */
     private void initStatistics() {
-        // TODO Lier les propriétés du joueur avec celles du contrôleur.
         controller.bindLife(player.getLivesProperty());
         controller.bindScore(player.getScoreProperty());
         controller.bindBombs(player.bombsLengthProperty());
@@ -307,7 +305,6 @@ public final class BombermanGame {
     public void dropBomb(Bomb bomb) {
         bomb.drop(player.getX(), player.getY());
         addMovable(bomb);
-        Cell bombCell = getCellAt(bomb.getX(), bomb.getY()); // Not sure about this
     }
 
     /**
@@ -405,5 +402,4 @@ public final class BombermanGame {
         animation.stop();
         controller.gameOver(message);
     }
-
 }
