@@ -18,12 +18,16 @@ public class Enemies extends AbstractMovable {
      * @param sprite    L'instance de {@link Sprite} représentant l'objet.
      */
     private static final Random random = new Random();
-    private MovementStrategy movementStrategy;
+    private final MovementStrategy movementStrategy;
 
-    public Enemies(BombermanGame game, double xPosition, double yPosition, Sprite sprite, MovementsStrategy movementStrategy) {
+    public Enemies(BombermanGame game, double xPosition, double yPosition, Sprite sprite) {
         super(game, xPosition, yPosition, sprite);
         long lastMove = 0;
-        this.movementStrategy = movementStrategy;
+        if (random.nextBoolean()) {
+            this.movementStrategy = new HorizontalMovementStrategy();
+        } else {
+            this.movementStrategy = new VerticalMovementStrategy();
+        }
     }
 
     @Override
