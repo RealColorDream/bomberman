@@ -52,7 +52,7 @@ public final class BombermanGame {
     /**
      * Le nombre de bombes initialement disponibles pour le joueur.
      */
-    public static final int DEFAULT_BOMBS = 5;
+    public static final int DEFAULT_BOMBS = 1;
 
     /**
      * La largeur de la carte du jeu (en pixels).
@@ -402,6 +402,10 @@ public final class BombermanGame {
     private void gameOver(String message) {
         animation.stop();
         controller.gameOver(message);
+    }
+
+    public void addPlayerBomb(){
+        player.addBomb();
     }
 
 }

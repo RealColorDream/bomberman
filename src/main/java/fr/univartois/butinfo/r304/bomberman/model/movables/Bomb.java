@@ -67,6 +67,7 @@ public class Bomb extends AbstractMovable {
                 addExplosion(xPosition.get(), yPosition.get() + x);
             }
             game.removeMovable(this);
+            game.addPlayerBomb();
         }
         return false;
     }
