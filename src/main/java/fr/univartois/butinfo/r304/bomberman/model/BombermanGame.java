@@ -20,9 +20,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import fr.univartois.butinfo.r304.bomberman.model.map.CardGenerator;
-import fr.univartois.butinfo.r304.bomberman.model.map.Cell;
-import fr.univartois.butinfo.r304.bomberman.model.map.GameMap;
+import fr.univartois.butinfo.r304.bomberman.model.map.*;
 import fr.univartois.butinfo.r304.bomberman.model.movables.Bomb;
 import fr.univartois.butinfo.r304.bomberman.model.movables.Enemies;
 import fr.univartois.butinfo.r304.bomberman.model.movables.Player;
@@ -175,9 +173,9 @@ public final class BombermanGame {
         int mapHeight = height / cellSize;
         int mapWidth = width / cellSize;
 
-        return new CardGenerator(
-                spriteStore
-        ).generateCard(mapHeight, mapWidth);
+        CardGenerator generator = new CardGenerator(spriteStore);
+        generator.setMapStrategy(new Map_2(spriteStore));
+        return generator.generateCard(mapHeight, mapWidth);
     }
 
     /**
