@@ -4,12 +4,25 @@ import fr.univartois.butinfo.r304.bomberman.model.BombermanGame;
 import fr.univartois.butinfo.r304.bomberman.model.IMovable;
 import fr.univartois.butinfo.r304.bomberman.model.map.Cell;
 import fr.univartois.butinfo.r304.bomberman.view.Sprite;
-import javafx.scene.image.Image;
 
 public class Bomb extends AbstractMovable {
 
-    long dropTime=-1;
-    final static long EXPLODE_DELAY=5000;
+    private void explodeCellAt(int x, int y) {
+        Cell cellToUpdate = game.getCellAt(x, y);
+        if (cellToUpdate.getWall() != null) {
+            cellToUpdate.getWall().explode();
+            if (cellToUpdate.getWall().getState() == null)
+                cellToUpdate.replaceBy(new Cell(game.getSpriteStore().getSprite("lawn")));
+            else {
+                cellToUpdate.getSpriteProperty().set(cellToUpdate.getWall().getSprite());
+            }
+        }
+
+
+    }
+
+    long dropTime = -1;
+    static final long EXPLODE_DELAY = 5000;
 
     /**
      * Crée une nouvelle instance de AbstractMovable.
@@ -46,18 +59,20 @@ public class Bomb extends AbstractMovable {
     public void hitEnemy() {
         //Do nothing
     }
+
     @Override
-    public boolean move(long delta){
-        if (!isConsumed() && dropTime != -1 && System.currentTimeMillis() >= dropTime+EXPLODE_DELAY) {
+    public boolean move(long delta) {
+        if (!isConsumed() && dropTime != -1 && System.currentTimeMillis() >= dropTime + EXPLODE_DELAY) {
             game.addMovable(new Explosion(game, xPosition.get(), yPosition.get(), game.getSpriteStore().getSprite("explosion")));
-            for(int x = -1*game.getSpriteStore().getSpriteSize(); x<= game.getSpriteStore().getSpriteSize(); x+=2*game.getSpriteStore().getSpriteSize()){
-                game.addMovable(new Explosion(game, xPosition.get()+x, yPosition.get(), game.getSpriteStore().getSprite("explosion")));
-                game.addMovable(new Explosion(game, xPosition.get(), yPosition.get()+x, game.getSpriteStore().getSprite("explosion")));
-                game.getCellAt((int) (xPosition.get()+x), (int) yPosition.get()).replaceBy(new Cell(game.getSpriteStore().getSprite("lawn")));
-                game.getCellAt((int) xPosition.get(), (int) (yPosition.get()+1)).replaceBy(new Cell(game.getSpriteStore().getSprite("lawn")));
+            for (int x = -1 * game.getSpriteStore().getSpriteSize(); x <= game.getSpriteStore().getSpriteSize(); x += 2 * game.getSpriteStore().getSpriteSize()) {
+                game.addMovable(new Explosion(game, xPosition.get() + x, yPosition.get(), game.getSpriteStore().getSprite("explosion")));
+                game.addMovable(new Explosion(game, xPosition.get(), yPosition.get() + x, game.getSpriteStore().getSprite("explosion")));
+
+                explodeCellAt((int) xPosition.get() + x, (int) yPosition.get());
+                explodeCellAt((int) xPosition.get(), (int) (yPosition.get() + x));
             }
             game.removeMovable(this);
         }
-    return false;
+        return false;
     }
 }

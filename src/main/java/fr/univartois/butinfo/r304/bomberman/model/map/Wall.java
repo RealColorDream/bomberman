@@ -16,6 +16,7 @@
 
 package fr.univartois.butinfo.r304.bomberman.model.map;
 
+import fr.univartois.butinfo.r304.bomberman.model.map.wall.states.IWallState;
 import fr.univartois.butinfo.r304.bomberman.view.Sprite;
 
 /**
@@ -32,15 +33,20 @@ public final class Wall {
     /**
      * Le sprite représentant ce mur sur la carte.
      */
-    private Sprite sprite;
+
+    private IWallState state;
 
     /**
      * Crée une nouvelle instance de Wall.
      *
-     * @param sprite Le sprite représentant le mur sur la carte.
+     * @param state L'état du mur
      */
-    public Wall(Sprite sprite) {
-        this.sprite = sprite;
+    public Wall(IWallState state) {
+        this.state=state;
+    }
+
+    public void explode(){
+        state=state.nextState();
     }
 
     /**
@@ -49,7 +55,11 @@ public final class Wall {
      * @return Le sprite représentant ce mur sur la carte.
      */
     public Sprite getSprite() {
-        return sprite;
+        return state.getSprite();
+    }
+
+    public IWallState getState(){
+        return state;
     }
 
 }

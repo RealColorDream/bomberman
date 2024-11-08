@@ -21,6 +21,7 @@ import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import fr.univartois.butinfo.r304.bomberman.model.map.*;
+import fr.univartois.butinfo.r304.bomberman.model.map.Map_2;
 import fr.univartois.butinfo.r304.bomberman.model.movables.Bomb;
 import fr.univartois.butinfo.r304.bomberman.model.movables.Enemies;
 import fr.univartois.butinfo.r304.bomberman.model.movables.Player;
@@ -75,7 +76,6 @@ public final class BombermanGame {
     /**
      * Le personnage du joueur.
      */
-    // TODO Adaptez le type de cet attribut pour correspondre à votre implémentation.
     private Player player;
 
     /**
@@ -223,7 +223,6 @@ public final class BombermanGame {
      * Initialise les statistiques de cette partie.
      */
     private void initStatistics() {
-        // TODO Lier les propriétés du joueur avec celles du contrôleur.
         controller.bindLife(player.getLivesProperty());
         controller.bindScore(player.getScoreProperty());
         controller.bindBombs(player.bombsLengthProperty());
@@ -306,7 +305,6 @@ public final class BombermanGame {
     public void dropBomb(Bomb bomb) {
         bomb.drop(player.getX(), player.getY());
         addMovable(bomb);
-        Cell bombCell = getCellAt(bomb.getX(), bomb.getY()); // Not sure about this
     }
 
     /**
