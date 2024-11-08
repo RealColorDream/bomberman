@@ -7,4 +7,5 @@ public interface IMapBuilder {
     void setBrick(GameMap map, int i, int j);
     void setBorder(GameMap map);
     void setGrid(GameMap map);
+    void setGrid(GameMap map, int interval);
 }

@@ -52,4 +52,15 @@ public class MapBuilder implements IMapBuilder{
             }
         }
     }
+
+    @Override
+    public void setGrid(GameMap map, int interval) {
+        for (int i = 1; i < map.getHeight() - 1; i++) {
+            for (int j = 1; j < map.getWidth() - 1; j++) {
+                if (i % interval == 0 && j % interval == 0) {
+                    setBrick(map, i, j);
+                }
+            }
+        }
+    }
 }
