@@ -41,6 +41,7 @@ public abstract class AbstractMovable implements IMovable {
      * La marge de sécurité pour les obstacles (en pixels).
      */
     private static final int MARGIN = 5;
+    private static int HEAD_SIZE = 10;
 
     /**
      * Le jeu dans lequel cet objet évolue.
@@ -320,7 +321,7 @@ public abstract class AbstractMovable implements IMovable {
      * @return Si la nouvelle position de l'objet est sur un mur.
      */
     private boolean isOnWall(int x, int y) {
-        if (game.getCellAt(x, y).getWall() != null) {
+        if (game.getCellAt(x, y+HEAD_SIZE).getWall() != null) {
             // Le coin supérieur gauche de l'objet a atteint un mur.
             return true;
         }
@@ -330,7 +331,7 @@ public abstract class AbstractMovable implements IMovable {
             return true;
         }
 
-        if (game.getCellAt(x + getWidth() - MARGIN, y).getWall() != null) {
+        if (game.getCellAt(x + getWidth() - MARGIN, y + HEAD_SIZE).getWall() != null) {
             // Le coin supérieur droit de l'objet a atteint un mur.
             return true;
         }
