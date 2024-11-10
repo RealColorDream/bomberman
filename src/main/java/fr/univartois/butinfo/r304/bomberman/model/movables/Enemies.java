@@ -32,7 +32,7 @@ public class Enemies extends AbstractMovable {
 
     @Override
     public void collidedWith(IMovable other) {
-            other.explode();
+            other.hitEnemy();
     }
 
     @Override
@@ -43,7 +43,7 @@ public class Enemies extends AbstractMovable {
 
     @Override
     public void hitEnemy() {
-        explode();
+        //do nothing
     }
 }
 

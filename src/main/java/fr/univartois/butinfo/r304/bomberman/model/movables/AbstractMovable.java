@@ -1,6 +1,6 @@
 /**
  * Ce logiciel est distribué à des fins éducatives.
- *
+ * <p>
  * Il est fourni "tel quel", sans garantie d’aucune sorte, explicite
  * ou implicite, notamment sans garantie de qualité marchande, d’adéquation
  * à un usage particulier et d’absence de contrefaçon.
@@ -9,7 +9,7 @@
  * soit dans le cadre d’un contrat, d’un délit ou autre, en provenance de,
  * consécutif à ou en relation avec le logiciel ou son utilisation, ou avec
  * d’autres éléments du logiciel.
- *
+ * <p>
  * (c) 2022-2024 Romain Wallon - Université d'Artois.
  * Tous droits réservés.
  */
@@ -41,6 +41,7 @@ public abstract class AbstractMovable implements IMovable {
      * La marge de sécurité pour les obstacles (en pixels).
      */
     private static final int MARGIN = 5;
+    private static final int HEAD_SIZE = 10;
 
     /**
      * Le jeu dans lequel cet objet évolue.
@@ -86,7 +87,7 @@ public abstract class AbstractMovable implements IMovable {
      * @param sprite L'instance de {@link Sprite} représentant l'objet.
      */
     protected AbstractMovable(BombermanGame game, double xPosition,
-            double yPosition, Sprite sprite) {
+                              double yPosition, Sprite sprite) {
         this.game = game;
         this.xPosition = new SimpleDoubleProperty(xPosition);
         this.yPosition = new SimpleDoubleProperty(yPosition);
@@ -276,6 +277,9 @@ public abstract class AbstractMovable implements IMovable {
         return sprite;
     }
 
+
+
+
     /*
      * (non-Javadoc)
      *
@@ -301,8 +305,7 @@ public abstract class AbstractMovable implements IMovable {
 
         // On vérifie qu'il n'y a pas un obstacle.
         if (isOnWall((int) newX, (int) newY)) {
-            // L'objet a atteint un mur.
-            return false;
+            return moveWithFixedSpeed(delta, newX, newY);
         }
 
         // L'objet n'a atteint aucun obstacle
@@ -310,6 +313,72 @@ public abstract class AbstractMovable implements IMovable {
         yPosition.set(newY);
         return true;
     }
+
+    private boolean moveWithFixedSpeed(long delta, double newX, double newY) {
+        // L'objet a atteint un obstacle. Tentation de correction de la vitesse.
+        double speed = Math.sqrt(Math.pow(horizontalSpeed, 2) + Math.pow(verticalSpeed, 2));
+        double fixedVerticalSpeed = 0;
+        double fixedHorizontalSpeed = 0;
+        if (Math.abs(verticalSpeed)>Math.abs(horizontalSpeed)){
+            if (isOnRightOfWall((int) newX, (int) newY) && isOnLeftOfWall((int) newX, (int) newY)){
+                return false;
+            }
+            if (isOnRightOfWall((int) newX, (int) newY)){
+                fixedHorizontalSpeed=-speed;
+            }
+            else if (isOnLeftOfWall((int) newX, (int) newY)){
+                fixedHorizontalSpeed=speed;
+            }
+        }
+        else {
+            if (isOnTopOfWall((int) newX, (int) newY) && isOnBottomOfWall((int) newX, (int) newY)){
+                return false;
+            }
+            if (isOnTopOfWall((int) newX, (int) newY)){
+                fixedVerticalSpeed=speed;
+            }
+            else if (isOnBottomOfWall((int) newX, (int) newY)){
+                fixedVerticalSpeed=-speed;
+            }
+        }
+        newX = xPosition.get() + (fixedHorizontalSpeed * delta) / 1000;
+        newY = yPosition.get() + (fixedVerticalSpeed * delta) / 1000;
+
+        if (!isOnWall((int) newX, (int) newY)) {
+            xPosition.set(newX);
+            yPosition.set(newY);
+            return true;
+        }
+        return false;
+    }
+
+
+    private boolean isOnTopLeftCronerOfWall(int x, int y) {
+        return (game.getCellAt(x, y + HEAD_SIZE).getWall() != null);
+    }
+
+    private boolean isOnBottomLeftCornerOfWall(int x, int y) {
+        return (game.getCellAt(x, y + getHeight() - MARGIN).getWall() != null);
+    }
+    private boolean isOnTopRightCornerOfWall(int x, int y) {
+        return (game.getCellAt(x + getWidth() - MARGIN, y + HEAD_SIZE).getWall() != null);
+    }
+    private boolean isOnBottomRightCornerOfWall(int x, int y) {
+        return (game.getCellAt(x + getWidth() - MARGIN, y + getHeight() - MARGIN).getWall() != null);
+    }
+    private boolean isOnTopOfWall(int x, int y) {
+        return isOnTopRightCornerOfWall(x, y) || isOnTopLeftCronerOfWall(x, y);
+    }
+    private boolean isOnBottomOfWall(int x, int y) {
+        return isOnBottomRightCornerOfWall(x, y) || isOnBottomLeftCornerOfWall(x, y);
+    }
+    private boolean isOnLeftOfWall(int x, int y) {
+        return isOnTopLeftCronerOfWall(x, y) || isOnBottomLeftCornerOfWall(x, y);
+    }
+    private boolean isOnRightOfWall(int x, int y) {
+        return isOnTopRightCornerOfWall(x, y) || isOnBottomRightCornerOfWall(x, y);
+    }
+
 
     /**
      * Vérifie si la nouvelle position de l'objet est sur un mur.
@@ -320,28 +389,9 @@ public abstract class AbstractMovable implements IMovable {
      * @return Si la nouvelle position de l'objet est sur un mur.
      */
     private boolean isOnWall(int x, int y) {
-        if (game.getCellAt(x, y).getWall() != null) {
-            // Le coin supérieur gauche de l'objet a atteint un mur.
-            return true;
-        }
-
-        if (game.getCellAt(x, y + getHeight() - MARGIN).getWall() != null) {
-            // Le coin inférieur gauche de l'objet a atteint un mur.
-            return true;
-        }
-
-        if (game.getCellAt(x + getWidth() - MARGIN, y).getWall() != null) {
-            // Le coin supérieur droit de l'objet a atteint un mur.
-            return true;
-        }
-
-        if (game.getCellAt(x + getWidth() - MARGIN, y + getHeight() - MARGIN).getWall() != null) {
-            // Le coin inférieur droit de l'objet a atteint un mur.
-            return true;
-        }
-
-        return false;
+       return isOnTopLeftCronerOfWall(x, y) || isOnBottomLeftCornerOfWall(x, y) || isOnTopRightCornerOfWall(x, y) || isOnBottomRightCornerOfWall(x, y);
     }
+
 
     /*
      * (non-Javadoc)
