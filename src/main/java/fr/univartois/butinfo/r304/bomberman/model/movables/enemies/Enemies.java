@@ -75,8 +75,9 @@ public class Enemies extends AbstractMovable {
      */
     @Override
     public void collidedWith(IMovable other) {
-        other.explode();
+        other.hitEnemy();
     }
+
 
     /**
      * Causes the enemy to explode. This marks the enemy as consumed, meaning it is removed from the game.
@@ -86,12 +87,14 @@ public class Enemies extends AbstractMovable {
         isConsumedProperty().set(true);
     }
 
+
     /**
      * This method is called when an enemy is hit.
      * It causes the enemy to explode.
      */
     @Override
     public void hitEnemy() {
-        explode();
+        //do nothing
     }
+
 }
