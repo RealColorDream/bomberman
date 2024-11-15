@@ -18,8 +18,6 @@ public class Bomb extends AbstractMovable {
                 cellToUpdate.getSpriteProperty().set(cellToUpdate.getWall().getSprite());
             }
         }
-
-
     }
 
     long dropTime = -1;
