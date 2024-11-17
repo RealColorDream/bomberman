@@ -296,7 +296,6 @@ class Sprite {
 | Fonctionnalité                              | Patron de conception utilisé | Terminée ? | Auteur(s)                                     |
 | ------------------------------------------- | ---------------------------- | ---------- | --------------------------------------------- |
 | Instance du `SpriteStore`                   |                              |            |                                               |
-| Bombes synchronisées                        |                              |            |                                               |
 | Bonus de bombe                              |                              |            |                                               |
 | Bonus d'invulnérabilité                     |                              |            |                                               |
 | Bonus de point de vie                       |                              |            |                                               |
