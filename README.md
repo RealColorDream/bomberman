@@ -290,3 +290,15 @@ class Sprite {
 | Solidité des murs                           |                              |            |                                               |
 | Variantes de génération pour la carte       |                              |            |                                               |
 | Différents types de bombes                  |                              |            |                                               |
+
+### TP n°5
+
+| Fonctionnalité                              | Patron de conception utilisé | Terminée ? | Auteur(s)                                     |
+| ------------------------------------------- | ---------------------------- | ---------- | --------------------------------------------- |
+| Instance du `SpriteStore`                   |                              |            |                                               |
+| Bombes synchronisées                        |                              |            |                                               |
+| Bonus de bombe                              |                              |            |                                               |
+| Bonus d'invulnérabilité                     |                              |            |                                               |
+| Bonus de point de vie                       |                              |            |                                               |
+| Apparition aléatoire d'un bonus             |                              |            |                                               |
+| Gestion des différents niveaux              |                              |            |                                               |
