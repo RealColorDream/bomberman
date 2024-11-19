@@ -101,6 +101,7 @@ public final class BombermanController implements IBombermanController {
      */
     public void setStage(Stage stage) {
         this.stage = stage;
+        addKeyListeners();
     }
 
     /*
@@ -123,7 +124,6 @@ public final class BombermanController implements IBombermanController {
     @Override
     public void prepare(GameMap map) {
         createBackground(map);
-        addKeyListeners();
     }
 
     /**
