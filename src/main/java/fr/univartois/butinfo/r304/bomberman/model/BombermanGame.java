@@ -20,9 +20,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import fr.univartois.butinfo.r304.bomberman.Bomberman;
-import fr.univartois.butinfo.r304.bomberman.model.map.*;
-import fr.univartois.butinfo.r304.bomberman.model.map.Map_2;
+import fr.univartois.butinfo.r304.bomberman.model.map.CardGenerator;
+import fr.univartois.butinfo.r304.bomberman.model.map.Cell;
+import fr.univartois.butinfo.r304.bomberman.model.map.GameMap;
 import fr.univartois.butinfo.r304.bomberman.model.movables.Bomb;
 import fr.univartois.butinfo.r304.bomberman.model.movables.Enemies;
 import fr.univartois.butinfo.r304.bomberman.model.movables.Player;
@@ -47,12 +47,12 @@ public final class BombermanGame {
     /**
      * La vitesse de déplacement du joueur (en pixels/s).
      */
-    public static final int DEFAULT_SPEED = 75* Bomberman.SCALE;
+    public static final int DEFAULT_SPEED = 75;
 
     /**
      * Le nombre de bombes initialement disponibles pour le joueur.
      */
-    public static final int DEFAULT_BOMBS = 1;
+    public static final int DEFAULT_BOMBS = 5;
 
     /**
      * La largeur de la carte du jeu (en pixels).
@@ -173,16 +173,16 @@ public final class BombermanGame {
         int cellSize = spriteStore.getSpriteSize();
         int mapHeight = height / cellSize;
         int mapWidth = width / cellSize;
-
-        CardGenerator generator = new CardGenerator(spriteStore);
-        generator.setMapStrategy(new Map_2(spriteStore));
-        return generator.generateCard(mapHeight, mapWidth);
+        return new CardGenerator(
+                spriteStore
+        ).generateCard(mapHeight, mapWidth);
     }
 
     /**
      * Démarre la partie de Bomberman.
      */
     public void start() {
+        prepare();
         createMovables();
         initStatistics();
         animation.start();
@@ -403,9 +403,4 @@ public final class BombermanGame {
         animation.stop();
         controller.gameOver(message);
     }
-
-    public void addPlayerBomb(){
-        player.addBomb();
-    }
-
 }

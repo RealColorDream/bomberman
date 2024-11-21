@@ -270,18 +270,17 @@ class Sprite {
 
 ### TP n°3
 
-| Fonctionnalité                         | Terminée ? | Auteur(s)                               |
-|----------------------------------------|------------|-----------------------------------------|
-| Représentation des ennemis             | Oui        | Mailly Loann                            |
-| Intégration des ennemis dans la partie | Oui        | Mailly Loann                            |
-| Représentation du joueur               | Oui        | Tout le monde                           |
-| Intégration du joueur dans la partie   | Oui        | Jakubiak Antoinne & Gomez Gonzalez Enzo |
-| Représentation des bombes et explosion | Oui        | Jakubiak Antoinne                       |
-| Intégration des bombes dans la partie  | Oui        | Jakubiak Antoinne & Gomez Gonzalez Enzo |
-| Création de la carte du jeu            | Oui        | Gomez Gonzalez Enzo                     |
+| Fonctionnalité                             | Terminée ? | Auteur(s)                            |
+| ------------------------------------------ |------------|--------------------------------------|
+| Représentation des ennemis                 | Oui        | Mailly Loann                         |
+| Intégration des ennemis dans la partie     | (WIP)      | Mailly Loann                         |
+| Représentation du joueur                   | Oui        | Tout le monde                        |
+| Intégration du joueur dans la partie       | Oui        | Jakubiak Antoinne & Gomez Gonzalez Enzo |
+| Représentation des bombes et explosion     | (WIP)      | Jakubiak Antoinne                    |
+| Intégration des bombes dans la partie      | (WIP)      | Jakubiak Antoinne & Gomez Gonzalez Enzo |
+| Création de la carte du jeu                | Oui        | Gomez Gonzalez Enzo                  |
 
 ### TP n°4
-- Arrivée de Grave Emma dans le groupe
 
 | Fonctionnalité                              | Patron de conception utilisé | Terminée ? | Auteur(s)                       |
 |---------------------------------------------|------------------------------|------------|---------------------------------|
@@ -291,3 +290,14 @@ class Sprite {
 | Solidité des murs                           | ?                            | Oui        | Jakubiak Antoine                |
 | Variantes de génération pour la carte       | Strategy Pattern + Builder   | Oui        | Gomez Gonzalez Enzo             |
 | Différents types de bombes                  | Strategy Pattern             | Oui        | Grave Emma                      |
+
+### TP n°5
+
+| Fonctionnalité                              | Patron de conception utilisé | Terminée ? | Auteur(s)                                     |
+| ------------------------------------------- | ---------------------------- | ---------- | --------------------------------------------- |
+| Instance du `SpriteStore`                   |                              |            |                                               |
+| Bonus de bombe                              |                              |            |                                               |
+| Bonus d'invulnérabilité                     |                              |            |                                               |
+| Bonus de point de vie                       |                              |            |                                               |
+| Apparition aléatoire d'un bonus             |                              |            |                                               |
+| Gestion des différents niveaux              |                              |            |                                               |

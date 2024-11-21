@@ -36,17 +36,15 @@ import javafx.stage.Stage;
  */
 public final class Bomberman extends Application {
 
-    public static final int SCALE = 2;
-
     /**
      * La largeur (en pixels) de la fenêtre affichant le jeu.
      */
-    private static final int GAME_WIDTH = 17*32*SCALE;
+    private static final int GAME_WIDTH = 1080;
 
     /**
      * La hauteur (en pixels) de la fenêtre affichant le jeu.
      */
-    private static final int GAME_HEIGHT = 13*32*SCALE;
+    private static final int GAME_HEIGHT = 720;
 
     /**
      * Le nombre d'ennemis à combattre dans le jeu.

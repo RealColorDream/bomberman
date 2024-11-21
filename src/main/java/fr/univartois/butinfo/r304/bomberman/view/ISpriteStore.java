@@ -16,8 +16,6 @@
 
 package fr.univartois.butinfo.r304.bomberman.view;
 
-import fr.univartois.butinfo.r304.bomberman.Bomberman;
-
 import java.util.NoSuchElementException;
 
 /**
@@ -52,7 +50,7 @@ public interface ISpriteStore {
      * @return La taille des sprites (en pixels).
      */
     default int getSpriteSize() {
-        return 32* Bomberman.SCALE;
+        return 30;
     }
 
 }
