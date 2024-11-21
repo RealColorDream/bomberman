@@ -24,7 +24,7 @@ import fr.univartois.butinfo.r304.bomberman.Bomberman;
 import fr.univartois.butinfo.r304.bomberman.model.map.*;
 import fr.univartois.butinfo.r304.bomberman.model.map.Map_2;
 import fr.univartois.butinfo.r304.bomberman.model.movables.Bomb;
-import fr.univartois.butinfo.r304.bomberman.model.movables.Enemies;
+import fr.univartois.butinfo.r304.bomberman.model.movables.enemies.Enemies;
 import fr.univartois.butinfo.r304.bomberman.model.movables.Player;
 import fr.univartois.butinfo.r304.bomberman.view.ISpriteStore;
 import fr.univartois.butinfo.r304.bomberman.view.Sprite;
