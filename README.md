@@ -270,26 +270,26 @@ class Sprite {
 
 ### TP n°3
 
-| Fonctionnalité                             | Terminée ? | Auteur(s)                            |
-| ------------------------------------------ |------------|--------------------------------------|
-| Représentation des ennemis                 | Oui        | Mailly Loann                         |
-| Intégration des ennemis dans la partie     | (WIP)      | Mailly Loann                         |
-| Représentation du joueur                   | Oui        | Tout le monde                        |
-| Intégration du joueur dans la partie       | Oui        | Jakubiak Antoinne & Gomez Gonzalez Enzo |
-| Représentation des bombes et explosion     | (WIP)      | Jakubiak Antoinne                    |
-| Intégration des bombes dans la partie      | (WIP)      | Jakubiak Antoinne & Gomez Gonzalez Enzo |
-| Création de la carte du jeu                | Oui        | Gomez Gonzalez Enzo                  |
+| Fonctionnalité                         | Terminée ? | Auteur(s)                               |
+|----------------------------------------|------------|-----------------------------------------|
+| Représentation des ennemis             | Oui        | Mailly Loann                            |
+| Intégration des ennemis dans la partie | Oui        | Mailly Loann                            |
+| Représentation du joueur               | Oui        | Tout le monde                           |
+| Intégration du joueur dans la partie   | Oui        | Jakubiak Antoinne & Gomez Gonzalez Enzo |
+| Représentation des bombes et explosion | Oui        | Jakubiak Antoinne                       |
+| Intégration des bombes dans la partie  | Oui        | Jakubiak Antoinne & Gomez Gonzalez Enzo |
+| Création de la carte du jeu            | Oui        | Gomez Gonzalez Enzo                     |
 
 ### TP n°4
 
-| Fonctionnalité                              | Patron de conception utilisé | Terminée ? | Auteur(s)             |
-|---------------------------------------------|------------------------------|------------|-----------------------|
-| Variantes de déplacement des ennemis        | Strategy Pattern             | (WIP)      | Grave Emma            |
-| Gestion des points de vie (ennemis, joueur) | ?                            | (WIP)      | Mailly Loann          |
-| Invulnérabilité du joueur                   | None                         | Oui        | Jakubiak Antoine  ??? |
-| Solidité des murs                           | ?                            | Oui        | Jakubiak Antoine      |
-| Variantes de génération pour la carte       | Strategy Pattern + Builder   | Oui        | Gomez Gonzalez Enzo   |
-| Différents types de bombes                  | Strategy Pattern             | Oui        | Grave Emma            |
+| Fonctionnalité                              | Patron de conception utilisé | Terminée ? | Auteur(s)                       |
+|---------------------------------------------|------------------------------|------------|---------------------------------|
+| Variantes de déplacement des ennemis        | Strategy Pattern             | (WIP)      | Grave Emma   / Mailly Loann ??? |
+| Gestion des points de vie (ennemis, joueur) | ?                            | (WIP)      | Mailly Loann                    |
+| Invulnérabilité du joueur                   | None                         | Oui        | Jakubiak Antoine  ???           |
+| Solidité des murs                           | ?                            | Oui        | Jakubiak Antoine                |
+| Variantes de génération pour la carte       | Strategy Pattern + Builder   | Oui        | Gomez Gonzalez Enzo             |
+| Différents types de bombes                  | Strategy Pattern             | Oui        | Grave Emma                      |
 
 ### TP n°5
 
