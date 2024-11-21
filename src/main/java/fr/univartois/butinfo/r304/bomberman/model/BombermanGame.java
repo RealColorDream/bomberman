@@ -183,6 +183,7 @@ public final class BombermanGame {
      * Démarre la partie de Bomberman.
      */
     public void start() {
+        prepare();
         createMovables();
         initStatistics();
         animation.start();
