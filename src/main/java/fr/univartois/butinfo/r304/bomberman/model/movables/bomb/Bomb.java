@@ -38,8 +38,14 @@ public class Bomb extends AbstractMovable {
     }
 
     public void drop(double x, double y) {
-        xPosition.set(x);
-        yPosition.set(y);
+        int tileSize = game.getSpriteStore().getSpriteSize();
+
+        long roundedX = Math.round(x / tileSize) * tileSize;
+        long roundedY = Math.round(y / tileSize) * tileSize;
+
+
+        xPosition.set(roundedX);
+        yPosition.set(roundedY);
         dropTime = System.currentTimeMillis();
 
 
@@ -61,18 +67,20 @@ public class Bomb extends AbstractMovable {
         //Do nothing
     }
 
+    private void addExplosion(double x, double y) {
+        game.addMovable(new Explosion(game, x, y, game.getSpriteStore().getSprite("explosion")));
+    }
+
     @Override
     public boolean move(long delta) {
         if (!isConsumed() && dropTime != -1 && System.currentTimeMillis() >= dropTime + EXPLODE_DELAY) {
             game.addMovable(new Explosion(game, xPosition.get(), yPosition.get(), game.getSpriteStore().getSprite("explosion")));
             for (int x = -1 * game.getSpriteStore().getSpriteSize(); x <= game.getSpriteStore().getSpriteSize(); x += 2 * game.getSpriteStore().getSpriteSize()) {
-                game.addMovable(new Explosion(game, xPosition.get() + x, yPosition.get(), game.getSpriteStore().getSprite("explosion")));
-                game.addMovable(new Explosion(game, xPosition.get(), yPosition.get() + x, game.getSpriteStore().getSprite("explosion")));
-
-                explodeCellAt((int) xPosition.get() + x, (int) yPosition.get());
-                explodeCellAt((int) xPosition.get(), (int) (yPosition.get() + x));
+                addExplosion(xPosition.get() + x, yPosition.get());
+                addExplosion(xPosition.get(), yPosition.get() + x);
             }
             game.removeMovable(this);
+            game.addPlayerBomb();
         }
         return false;
     }
