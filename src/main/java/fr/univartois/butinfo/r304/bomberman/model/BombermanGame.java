@@ -20,11 +20,11 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import fr.univartois.butinfo.r304.bomberman.model.map.CardGenerator;
-import fr.univartois.butinfo.r304.bomberman.model.map.Cell;
-import fr.univartois.butinfo.r304.bomberman.model.map.GameMap;
-import fr.univartois.butinfo.r304.bomberman.model.movables.Bomb;
-import fr.univartois.butinfo.r304.bomberman.model.movables.Enemies;
+import fr.univartois.butinfo.r304.bomberman.Bomberman;
+import fr.univartois.butinfo.r304.bomberman.model.map.*;
+import fr.univartois.butinfo.r304.bomberman.model.map.Map_2;
+import fr.univartois.butinfo.r304.bomberman.model.movables.bomb.Bomb;
+import fr.univartois.butinfo.r304.bomberman.model.movables.enemies.Enemies;
 import fr.univartois.butinfo.r304.bomberman.model.movables.Player;
 import fr.univartois.butinfo.r304.bomberman.view.ISpriteStore;
 import fr.univartois.butinfo.r304.bomberman.view.Sprite;
@@ -47,12 +47,12 @@ public final class BombermanGame {
     /**
      * La vitesse de déplacement du joueur (en pixels/s).
      */
-    public static final int DEFAULT_SPEED = 75;
+    public static final int DEFAULT_SPEED = 75* Bomberman.SCALE;
 
     /**
      * Le nombre de bombes initialement disponibles pour le joueur.
      */
-    public static final int DEFAULT_BOMBS = 5;
+    public static final int DEFAULT_BOMBS = 1;
 
     /**
      * La largeur de la carte du jeu (en pixels).
@@ -173,9 +173,10 @@ public final class BombermanGame {
         int cellSize = spriteStore.getSpriteSize();
         int mapHeight = height / cellSize;
         int mapWidth = width / cellSize;
-        return new CardGenerator(
-                spriteStore
-        ).generateCard(mapHeight, mapWidth);
+
+        CardGenerator generator = new CardGenerator(spriteStore);
+        generator.setMapStrategy(new Map_2(spriteStore));
+        return generator.generateCard(mapHeight, mapWidth);
     }
 
     /**
@@ -403,4 +404,9 @@ public final class BombermanGame {
         animation.stop();
         controller.gameOver(message);
     }
+
+    public void addPlayerBomb(){
+        player.addBomb();
+    }
+
 }

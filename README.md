@@ -282,14 +282,14 @@ class Sprite {
 
 ### TP n°4
 
-| Fonctionnalité                              | Patron de conception utilisé | Terminée ? | Auteur(s)                       |
-|---------------------------------------------|------------------------------|------------|---------------------------------|
-| Variantes de déplacement des ennemis        | Strategy Pattern             | (WIP)      | Grave Emma   / Mailly Loann ??? |
-| Gestion des points de vie (ennemis, joueur) | ?                            | (WIP)      | Mailly Loann                    |
-| Invulnérabilité du joueur                   | None                         | Oui        | Jakubiak Antoine  ???           |
-| Solidité des murs                           | ?                            | Oui        | Jakubiak Antoine                |
-| Variantes de génération pour la carte       | Strategy Pattern + Builder   | Oui        | Gomez Gonzalez Enzo             |
-| Différents types de bombes                  | Strategy Pattern             | Oui        | Grave Emma                      |
+| Fonctionnalité                              | Patron de conception utilisé | Terminée ? | Auteur(s)             |
+|---------------------------------------------|------------------------------|------------|-----------------------|
+| Variantes de déplacement des ennemis        | Strategy Pattern             | (WIP)      | Grave Emma            |
+| Gestion des points de vie (ennemis, joueur) | ?                            | (WIP)      | Mailly Loann          |
+| Invulnérabilité du joueur                   | None                         | Oui        | Jakubiak Antoine  ??? |
+| Solidité des murs                           | ?                            | Oui        | Jakubiak Antoine      |
+| Variantes de génération pour la carte       | Strategy Pattern + Builder   | Oui        | Gomez Gonzalez Enzo   |
+| Différents types de bombes                  | Strategy Pattern             | Oui        | Grave Emma            |
 
 ### TP n°5
 
