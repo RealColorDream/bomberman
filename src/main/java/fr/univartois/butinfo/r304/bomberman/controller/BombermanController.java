@@ -102,6 +102,7 @@ public final class BombermanController implements IBombermanController {
     public void setStage(Stage stage) {
         this.stage = stage;
         addKeyListeners();
+        stage.requestFocus();
     }
 
     /*
@@ -161,18 +162,19 @@ public final class BombermanController implements IBombermanController {
             }
         });
 
-        // Lorsque l'utilisateur appuie sur une flèche, on déplace son personnage.
+        // Lorsque l'utilisateur appuie sur une touche, on effectue une action.
         stage.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
             if (started) {
+                // Appelle la méthode handleKeyPress pour gérer les actions spécifiques.
+                handleKeyPress(e.getCode());
+
+                // Gestion du déplacement.
                 if (e.getCode() == KeyCode.UP) {
                     game.moveUp();
-
                 } else if (e.getCode() == KeyCode.LEFT) {
                     game.moveLeft();
-
                 } else if (e.getCode() == KeyCode.DOWN) {
                     game.moveDown();
-
                 } else if (e.getCode() == KeyCode.RIGHT) {
                     game.moveRight();
                 }
@@ -271,5 +273,29 @@ public final class BombermanController implements IBombermanController {
     public void reset() {
         movingPane.getChildren().clear();
     }
+
+
+    public void handleKeyPress(KeyCode key) {
+        switch (key) {
+            case A -> {
+                System.out.println("A pressed");
+                game.changeBombTypeToNormal();
+            }
+            case Z -> {
+                System.out.println("Z pressed");
+                game.changeBombTypeToLarge();
+            }
+            case E -> {
+                System.out.println("E pressed");
+                game.changeBombTypeToSpecial();
+            }
+            case SPACE -> {
+                System.out.println("SPACE pressed");
+                game.dropBomb();
+            }
+            default -> {}
+        }
+    }
+
 
 }

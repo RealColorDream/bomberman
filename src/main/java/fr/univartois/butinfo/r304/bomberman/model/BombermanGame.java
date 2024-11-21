@@ -23,7 +23,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import fr.univartois.butinfo.r304.bomberman.Bomberman;
 import fr.univartois.butinfo.r304.bomberman.model.map.*;
 import fr.univartois.butinfo.r304.bomberman.model.map.Map_2;
-import fr.univartois.butinfo.r304.bomberman.model.movables.bomb.Bomb;
+import fr.univartois.butinfo.r304.bomberman.model.movables.bomb.*;
 import fr.univartois.butinfo.r304.bomberman.model.movables.enemies.Enemies;
 import fr.univartois.butinfo.r304.bomberman.model.movables.Player;
 import fr.univartois.butinfo.r304.bomberman.view.ISpriteStore;
@@ -47,7 +47,7 @@ public final class BombermanGame {
     /**
      * La vitesse de déplacement du joueur (en pixels/s).
      */
-    public static final int DEFAULT_SPEED = 75* Bomberman.SCALE;
+    public static final int DEFAULT_SPEED = (int) (75* Bomberman.SCALE);
 
     /**
      * Le nombre de bombes initialement disponibles pour le joueur.
@@ -294,6 +294,17 @@ public final class BombermanGame {
         if (!player.getBombsProperty().isEmpty()) {
             Bomb bomb = player.getBombsProperty().remove(0);
             player.bombsLengthProperty().set(player.bombsLengthProperty().get() - 1);
+
+            BombStrategy strategy;
+            if (player.getSelectedBombType() == Player.BombType.NORMAL) {
+                strategy = new NormalBomb();
+            } else if (player.getSelectedBombType() == Player.BombType.LARGE) {
+                strategy = new LargeBomb();
+            } else {
+                strategy = new SpecialBomb();
+            }
+
+            bomb.setStrategy(strategy);
             dropBomb(bomb);
         }
     }
@@ -407,6 +418,21 @@ public final class BombermanGame {
 
     public void addPlayerBomb(){
         player.addBomb();
+    }
+
+    public void changeBombTypeToNormal() {
+        player.selectBombType(Player.BombType.NORMAL);
+        System.out.println("Bomb type changed to NORMAL");
+    }
+
+    public void changeBombTypeToLarge() {
+        player.selectBombType(Player.BombType.LARGE);
+        System.out.println("Bomb type changed to LARGE");
+    }
+
+    public void changeBombTypeToSpecial() {
+        player.selectBombType(Player.BombType.SPECIAL);
+        System.out.println("Bomb type changed to SPECIAL");
     }
 
 }
