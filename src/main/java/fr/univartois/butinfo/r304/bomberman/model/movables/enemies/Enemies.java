@@ -3,6 +3,7 @@ package fr.univartois.butinfo.r304.bomberman.model.movables.enemies;
 import fr.univartois.butinfo.r304.bomberman.model.BombermanGame;
 import fr.univartois.butinfo.r304.bomberman.model.IMovable;
 import fr.univartois.butinfo.r304.bomberman.model.movables.AbstractMovable;
+import fr.univartois.butinfo.r304.bomberman.model.movables.bomb.Bomb;
 import fr.univartois.butinfo.r304.bomberman.view.Sprite;
 
 import java.util.Random;
@@ -94,4 +95,10 @@ public class Enemies extends AbstractMovable {
     public void hitEnemy() {
         explode();
     }
+
+    @Override
+    public void collideWithBomb(Bomb bomb) {
+        bomb.getStrategy().onCollisionWithEnemy(bomb, this, game);
+    }
+
 }

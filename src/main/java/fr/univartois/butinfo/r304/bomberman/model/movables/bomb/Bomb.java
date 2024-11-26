@@ -28,6 +28,10 @@ public class Bomb extends AbstractMovable {
         this.strategy = strategy;
     }
 
+    public BombStrategy getStrategy() {
+        return strategy;
+    }
+
     public void drop(double x, double y) {
         int tileSize = game.getSpriteStore().getSpriteSize();
 
@@ -44,9 +48,7 @@ public class Bomb extends AbstractMovable {
 
     @Override
     public void collidedWith(IMovable other) {
-        if (other instanceof Enemies && strategy instanceof SpecialBomb) {
-            strategy.explode(this, game);
-        }
+        other.collideWithBomb(this);
     }
 
     @Override
@@ -82,5 +84,10 @@ public class Bomb extends AbstractMovable {
 
     public void setStrategy(BombStrategy strategy) {
         this.strategy = strategy;
+    }
+
+    @Override
+    public void collideWithBomb(Bomb bomb) {
+        //do nothing
     }
 }

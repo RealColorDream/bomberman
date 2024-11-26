@@ -2,6 +2,7 @@ package fr.univartois.butinfo.r304.bomberman.model.movables.bomb;
 
 import fr.univartois.butinfo.r304.bomberman.model.BombermanGame;
 import fr.univartois.butinfo.r304.bomberman.model.map.Cell;
+import fr.univartois.butinfo.r304.bomberman.model.movables.enemies.Enemies;
 
 public class LargeBomb implements BombStrategy {
 
@@ -19,6 +20,11 @@ public class LargeBomb implements BombStrategy {
                 game.getCellAt(bomb.getX(), (bomb.getY() + x)).replaceBy(new Cell(game.getSpriteStore().getSprite("lawn")));
             }
         }
+    }
+
+    @Override
+    public void onCollisionWithEnemy(Bomb bomb, Enemies enemy, BombermanGame game) {
+        //do nothing
     }
 }
 

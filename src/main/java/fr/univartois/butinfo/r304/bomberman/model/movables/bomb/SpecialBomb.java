@@ -1,6 +1,7 @@
 package fr.univartois.butinfo.r304.bomberman.model.movables.bomb;
 
 import fr.univartois.butinfo.r304.bomberman.model.BombermanGame;
+import fr.univartois.butinfo.r304.bomberman.model.movables.enemies.Enemies;
 
 public class SpecialBomb implements BombStrategy {
 
@@ -22,5 +23,11 @@ public class SpecialBomb implements BombStrategy {
             game.removeMovable(bomb);
             game.addPlayerBomb();
         }
+    }
+
+    @Override
+    public void onCollisionWithEnemy(Bomb bomb, Enemies enemy, BombermanGame game) {
+        // Explosion déclenchée lorsqu'une bombe touche un ennemi
+        explode(bomb, game);
     }
 }
