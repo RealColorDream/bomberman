@@ -52,7 +52,6 @@ public interface ISpriteStore {
      * @return La taille des sprites (en pixels).
      */
     default int getSpriteSize() {
-        return 32* Bomberman.SCALE;
+        return (int) (32 * Bomberman.SCALE);
     }
-
 }
