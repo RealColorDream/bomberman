@@ -7,4 +7,6 @@ public interface BombStrategy {
     void explode(Bomb bomb, BombermanGame game);
 
     void onCollisionWithEnemy(Bomb bomb, Enemies enemy, BombermanGame game);
+
+    String getSprite();
 }

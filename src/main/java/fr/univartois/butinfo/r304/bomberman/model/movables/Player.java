@@ -99,9 +99,9 @@ public class Player extends AbstractMovable implements IMovable {
 
         // Instancier la bombe avec la stratégie appropriée
         BombStrategy strategy = selectedBombType.getStrategy();
-
-        Bomb newBomb = new Bomb(game, xPosition.get(), yPosition.get(), game.getSpriteStore().getSprite("bomb"), strategy);
-
+        System.out.println("DEBUG PLAYER " + strategy.getSprite());
+        Bomb newBomb = new Bomb(game, xPosition.get(), yPosition.get(), game.getSpriteStore().getSprite(strategy.getSprite()), strategy);
+        newBomb.setSprite(game.getSpriteStore().getSprite(strategy.getSprite()));
         // Ajouter la bombe à la liste
         bombs.add(newBomb);
 

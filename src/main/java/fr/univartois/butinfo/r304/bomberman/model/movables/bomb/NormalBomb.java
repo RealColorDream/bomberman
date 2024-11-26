@@ -28,4 +28,9 @@ public class NormalBomb implements BombStrategy {
     public void onCollisionWithEnemy(Bomb bomb, Enemies enemy, BombermanGame game) {
         //do nothing
     }
+
+    @Override
+    public String getSprite() {
+        return "bomb";
+    }
 }

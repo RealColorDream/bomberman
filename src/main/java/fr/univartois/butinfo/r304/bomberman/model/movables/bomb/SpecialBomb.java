@@ -30,4 +30,9 @@ public class SpecialBomb implements BombStrategy {
         // Explosion déclenchée lorsqu'une bombe touche un ennemi
         explode(bomb, game);
     }
+
+    @Override
+    public String getSprite() {
+        return "turtlemine";
+    }
 }
