@@ -40,6 +40,11 @@ public class Explosion extends AbstractMovable {
     }
 
     @Override
+    public void collideWithBomb(Bomb bomb) {
+        //do nothing
+    }
+
+    @Override
     public boolean move(long timeDelta) {
         if (!isConsumed() && System.currentTimeMillis() >= creationTime + EXPLOSION_DELAY) {
             explodeCellAt((int) xPosition.get(), (int) yPosition.get());
