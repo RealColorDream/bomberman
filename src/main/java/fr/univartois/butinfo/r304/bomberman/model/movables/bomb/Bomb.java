@@ -84,6 +84,7 @@ public class Bomb extends AbstractMovable {
 
     public void setStrategy(BombStrategy strategy) {
         this.strategy = strategy;
+        this.setSprite(game.getSpriteStore().getSprite(strategy.getSprite()));
     }
 
     @Override
