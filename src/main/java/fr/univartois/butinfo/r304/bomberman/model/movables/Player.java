@@ -153,6 +153,11 @@ public class Player extends AbstractMovable implements IMovable {
         die();
     }
 
+    @Override
+    public void collideWithBomb(Bomb bomb) {
+        //do nothing
+    }
+
     public void selectBombType(BombType bombType) {
         this.selectedBombType = bombType;
     }
