@@ -2,7 +2,7 @@ package fr.univartois.butinfo.r304.bomberman.model.movables;
 
 import fr.univartois.butinfo.r304.bomberman.model.BombermanGame;
 import fr.univartois.butinfo.r304.bomberman.model.IMovable;
-import fr.univartois.butinfo.r304.bomberman.model.movables.Bomb;
+import fr.univartois.butinfo.r304.bomberman.model.movables.bomb.*;
 import fr.univartois.butinfo.r304.bomberman.view.Sprite;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -23,6 +23,29 @@ public class Player extends AbstractMovable implements IMovable {
     private final int spawnX;
     private final int spawnY;
     private long invulnerabilityStartedAt=0;
+    private BombType selectedBombType = BombType.NORMAL;
+    public enum BombType {
+        NORMAL {
+            @Override
+            public BombStrategy getStrategy() {
+                return new NormalBomb(); // Retourne la stratégie pour une bombe normale
+            }
+        },
+        LARGE {
+            @Override
+            public BombStrategy getStrategy() {
+                return new LargeBomb(); // Retourne la stratégie pour une grosse bombe
+            }
+        },
+        SPECIAL {
+            @Override
+            public BombStrategy getStrategy() {
+                return new SpecialBomb(); // Retourne la stratégie pour une bombe spéciale
+            }
+        };
+
+        public abstract BombStrategy getStrategy();
+    }
 
     /**
      * Crée une nouvelle instance de Player.
@@ -71,10 +94,27 @@ public class Player extends AbstractMovable implements IMovable {
     public IntegerProperty bombsLengthProperty(){
             return bombNumbers;
     }
-    public void addBomb(){
-        bombs.add(new Bomb(game, xPosition.get(), yPosition.get(), game.getSpriteStore().getSprite("bomb")));
-        bombsLengthProperty().setValue(bombs.size());
+    public void addBomb() {
+        System.out.println("Bomb added with type: " + selectedBombType);
+
+        // Instancier la bombe avec la stratégie appropriée
+        BombStrategy strategy = selectedBombType.getStrategy();
+        System.out.println("DEBUG PLAYER " + strategy.getSprite());
+        Bomb newBomb = new Bomb(game, xPosition.get(), yPosition.get(), game.getSpriteStore().getSprite(strategy.getSprite()), strategy);
+        newBomb.setSprite(game.getSpriteStore().getSprite(strategy.getSprite()));
+        // Ajouter la bombe à la liste
+        bombs.add(newBomb);
+
+        // Mettre à jour la propriété du nombre de bombes
+        bombNumbers.set(bombs.size());
+
+        // Débogage pour vérifier la liste des bombes
+        System.out.println("Bombs in list after addition: " + bombs);
+        System.out.println("Bomb count property value: " + bombNumbers.get());
     }
+
+
+
 
     public void decreaseLives() {
         lives.set(lives.get() - 1);
@@ -111,5 +151,18 @@ public class Player extends AbstractMovable implements IMovable {
     @Override
     public void hitEnemy() {
         die();
+    }
+
+    @Override
+    public void collideWithBomb(Bomb bomb) {
+        //do nothing
+    }
+
+    public void selectBombType(BombType bombType) {
+        this.selectedBombType = bombType;
+    }
+
+    public BombType getSelectedBombType() {
+        return selectedBombType;
     }
 }

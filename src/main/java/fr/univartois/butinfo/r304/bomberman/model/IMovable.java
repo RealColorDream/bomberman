@@ -16,6 +16,7 @@
 
 package fr.univartois.butinfo.r304.bomberman.model;
 
+import fr.univartois.butinfo.r304.bomberman.model.movables.bomb.Bomb;
 import fr.univartois.butinfo.r304.bomberman.view.Sprite;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
@@ -205,5 +206,7 @@ public interface IMovable {
      * @return L'objet réel.
      */
     IMovable self();
+
+    void collideWithBomb(Bomb bomb);
 
 }

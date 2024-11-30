@@ -3,6 +3,7 @@ package fr.univartois.butinfo.r304.bomberman.model.movables.enemies;
 import fr.univartois.butinfo.r304.bomberman.model.BombermanGame;
 import fr.univartois.butinfo.r304.bomberman.model.IMovable;
 import fr.univartois.butinfo.r304.bomberman.model.movables.AbstractMovable;
+import fr.univartois.butinfo.r304.bomberman.model.movables.bomb.Bomb;
 import fr.univartois.butinfo.r304.bomberman.view.Sprite;
 
 import java.util.Random;
@@ -75,9 +76,8 @@ public class Enemies extends AbstractMovable {
      */
     @Override
     public void collidedWith(IMovable other) {
-        other.hitEnemy();
+        other.explode();
     }
-
 
     /**
      * Causes the enemy to explode. This marks the enemy as consumed, meaning it is removed from the game.
@@ -87,14 +87,18 @@ public class Enemies extends AbstractMovable {
         isConsumedProperty().set(true);
     }
 
-
     /**
      * This method is called when an enemy is hit.
      * It causes the enemy to explode.
      */
     @Override
     public void hitEnemy() {
-        //do nothing
+        explode();
+    }
+
+    @Override
+    public void collideWithBomb(Bomb bomb) {
+        bomb.getStrategy().onCollisionWithEnemy(bomb, this, game);
     }
 
 }

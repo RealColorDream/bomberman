@@ -389,7 +389,7 @@ public abstract class AbstractMovable implements IMovable {
      * @return Si la nouvelle position de l'objet est sur un mur.
      */
     private boolean isOnWall(int x, int y) {
-       return isOnTopLeftCronerOfWall(x, y) || isOnBottomLeftCornerOfWall(x, y) || isOnTopRightCornerOfWall(x, y) || isOnBottomRightCornerOfWall(x, y);
+        return isOnTopLeftCronerOfWall(x, y) || isOnBottomLeftCornerOfWall(x, y) || isOnTopRightCornerOfWall(x, y) || isOnBottomRightCornerOfWall(x, y);
     }
 
 

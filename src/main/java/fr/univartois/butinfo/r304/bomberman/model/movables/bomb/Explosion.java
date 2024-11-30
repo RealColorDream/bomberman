@@ -1,8 +1,9 @@
-package fr.univartois.butinfo.r304.bomberman.model.movables;
+package fr.univartois.butinfo.r304.bomberman.model.movables.bomb;
 
 import fr.univartois.butinfo.r304.bomberman.model.BombermanGame;
 import fr.univartois.butinfo.r304.bomberman.model.IMovable;
 import fr.univartois.butinfo.r304.bomberman.model.map.Cell;
+import fr.univartois.butinfo.r304.bomberman.model.movables.AbstractMovable;
 import fr.univartois.butinfo.r304.bomberman.view.Sprite;
 
 public class Explosion extends AbstractMovable {
@@ -35,6 +36,11 @@ public class Explosion extends AbstractMovable {
 
     @Override
     public void hitEnemy() {
+        //do nothing
+    }
+
+    @Override
+    public void collideWithBomb(Bomb bomb) {
         //do nothing
     }
 
