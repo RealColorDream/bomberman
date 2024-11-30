@@ -293,11 +293,11 @@ class Sprite {
 
 ### TP n°5
 
-| Fonctionnalité                              | Patron de conception utilisé | Terminée ? | Auteur(s)                                     |
-| ------------------------------------------- | ---------------------------- | ---------- | --------------------------------------------- |
-| Instance du `SpriteStore`                   |                              |            |                                               |
-| Bonus de bombe                              |                              |            |                                               |
-| Bonus d'invulnérabilité                     |                              |            |                                               |
-| Bonus de point de vie                       |                              |            |                                               |
-| Apparition aléatoire d'un bonus             |                              |            |                                               |
-| Gestion des différents niveaux              |                              |            |                                               |
+| Fonctionnalité                              | Patron de conception utilisé | Terminée ? | Auteur(s)           |
+| ------------------------------------------- |------------------------------|------------|---------------------|
+| Instance du `SpriteStore`                   |                              |            |                     |
+| Bonus de bombe                              | ???                          | WIP        | Gomez Gonzalez Enzo |
+| Bonus d'invulnérabilité                     |                              |            |                     |
+| Bonus de point de vie                       |                              |            |                     |
+| Apparition aléatoire d'un bonus             | ???                          | WIP        | Gomez Gonzalez Enzo |
+| Gestion des différents niveaux              |                              |            |                     |
