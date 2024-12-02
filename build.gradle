@@ -7,6 +7,7 @@ plugins {
     id 'application'
     id 'java'
     id 'org.openjfx.javafxplugin' version '0.1.0'
+    id "org.sonarqube" version "3.5.0.2730"
 }
 
 // La version du langage Java utilisée dans le projet.
@@ -27,4 +28,11 @@ application {
 javafx {
     version = '21.0.1'
     modules = ['javafx.controls', 'javafx.fxml']
+}
+
+sonar {
+    properties {
+        property "sonar.projectKey", "Bomberman_C1"
+        property "sonar.qualitygate.wait", true
+    }
 }
