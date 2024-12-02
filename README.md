@@ -301,3 +301,5 @@ class Sprite {
 | Bonus de point de vie                       |                              |            |                     |
 | Apparition aléatoire d'un bonus             | ???                          | WIP        | Gomez Gonzalez Enzo |
 | Gestion des différents niveaux              |                              |            |                     |
+
+💚 Test CI here 💚
