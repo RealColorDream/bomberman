@@ -12,8 +12,9 @@ plugins {
 
 // La version du langage Java utilisée dans le projet.
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 // Les dépôts d'où les dépendances doivent être téléchargées.
 repositories {
