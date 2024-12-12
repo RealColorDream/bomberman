@@ -40,5 +40,6 @@ sonar {
         property "sonar.qualitygate.wait", true
         property "sonar.host.url", "https://sonarqube.univ-artois.fr/"
         property "sonar.token", ""
+        property "sonar.java.binaries", "build/classes/java/main"
     }
 }
