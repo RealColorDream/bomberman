@@ -11,9 +11,10 @@ plugins {
 }
 
 // La version du langage Java utilisée dans le projet.
-sourceCompatibility = '21'
-targetCompatibility = '21'
-
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
 // Les dépôts d'où les dépendances doivent être téléchargées.
 repositories {
     mavenCentral()
